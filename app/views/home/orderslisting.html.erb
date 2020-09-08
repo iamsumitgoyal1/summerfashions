@@ -36,26 +36,28 @@
     }
   </style>
 </head>
-<h2><center>Products</center></h2>
+<h2><center>Orders</center></h2>
 <div>
   <table class="index_table">
     <thead id="head">
       <tr>
-        <th>Title</th>
-        <th>Vendor</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Published Date</th>
+        <th>Name</th>
+        <th>Order Number </th>
+        <th>Note</th>
+        <th>Note</th>
+        <th>financial_status </th>
+        <th>Total Price</th>
       </tr>
     </thead>
     <tbody id="ajax">
-      <% @productslist.each do |product| %>
+      <% @orderslist.each do |order| %>
         <tr>
-          <td><%= product.title %></td>
-          <td><%= product.vendor %></td>
-          <td><%= product.product_type %></td>
-          <td><%= product.body_html  %></td>
-          <td><%= product.published_at %></td>
+          <td><%= order.name %></td>
+          <td><%= order.order_number  %></td>
+          <td><%= order.customer.first_name %></td>
+          <td><%= order.note %></td>
+          <td><%= order.financial_status   %></td>
+          <td><%= order.total_price  %></td>
         </tr>
       <% end %>
     </tbody>
@@ -63,10 +65,10 @@
   <br>
   <br>
   <center>
-    <% if !@productslist.previous_page_info.nil? %>
-      <%= link_to "<<", productslisting_path(page_info: @productslist.previous_page_info), id: "links_to", class: "back" %>
+    <% if !@orderslist.previous_page_info.nil? %>
+      <%= link_to "<<", orderslisting_path(page_info: @orderslist.previous_page_info), id: "links_to", class: "back" %>
     <% end %>
-    <% if !@productslist.next_page_info.nil? %>
-      <%= link_to ">>", productslisting_path(page_info: @productslist.next_page_info), id: "links_to", class: "next" %><br>
+    <% if !@orderslist.next_page_info.nil? %>
+      <%= link_to ">>", orderslisting_path(page_info: @orderslist.next_page_info), id: "links_to", class: "next" %><br>
     <% end %>
   </center>
